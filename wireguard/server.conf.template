@@ -1,0 +1,9 @@
+[Interface]
+PrivateKey = ${VPN_PRIVATE_KEY}
+Address = ${VPN_ADDRESS}
+ListenPort = ${VPN_PORT}
+SaveConfig = true
+
+PostUp = iptables -A INPUT -p udp --dport ${VPN_PORT} -j ACCEPT; iptables -A FORWARD -i ${VPN_INTERFACE} -j ACCEPT; iptables -A FORWARD -o ${VPN_INTERFACE} -j ACCEPT; iptables -t nat -A POSTROUTING -o ${VPN_ETH_INTERFACE} -j MASQUERADE
+PostDown = iptables -D INPUT -p udp --dport ${VPN_PORT} -j ACCEPT; iptables -D FORWARD -i ${VPN_INTERFACE} -j ACCEPT; iptables -D FORWARD -o ${VPN_INTERFACE} -j ACCEPT; iptables -t nat -D POSTROUTING -o ${VPN_ETH_INTERFACE} -j MASQUERADE
+
