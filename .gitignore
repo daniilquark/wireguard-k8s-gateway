@@ -1,2 +1,9 @@
 .env
 keys/
+*.log
+wireguard/server.conf
+wireguard/peers/*/client*.conf
+wireguard/privatekey
+wireguard/publickey
+wireguard/peers/*/privatekey
+wireguard/peers/*/publickey
